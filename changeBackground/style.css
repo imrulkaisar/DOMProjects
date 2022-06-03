@@ -44,4 +44,6 @@ body {
     margin-top: 50px;
     border: 2px solid #fff;
     border-radius: 5px;
+    text-align: center;
+    min-width: 300px;
 }

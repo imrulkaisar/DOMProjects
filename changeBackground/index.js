@@ -25,7 +25,7 @@ function main(){
     let hexColor = document.querySelector('.hex-code')
     let rgbColor = document.querySelector('.rgb-code')
 
-    changeBg(main, changeBtn)
+    events(main, changeBtn)
 
 }
 
@@ -34,7 +34,7 @@ function main(){
 
 function generateHEXColor(){
 
-    let red, green, blue
+    let red, green, blue, color
 
     red = Math.floor(Math.random() * 255 + 1)
 
@@ -42,42 +42,39 @@ function generateHEXColor(){
 
     blue = Math.floor(Math.random() * 255 + 1)
 
-    return '#' + red.toString(16) + green.toString(16) + blue.toString(16)
+    color = '#' + red.toString(16) + green.toString(16) + blue.toString(16)
+
+    return color
 
 }
 
-// RGB to HEX converter function
+function printResult(color){
+    
+    let hex = document.querySelector('.hex-code')
+    let rgb = document.querySelector('.rgb-code')
+    let rgbColor = document.getElementById('main').style.backgroundColor
 
-function hextoRgb(hex){
-    hex = hex.slice(1,6)
-    let red, green, blue
-    red = '0x' + hex.charAt(0) + hex.charAt(1)
-    green = '0x' + hex.charAt(2) + hex.charAt(3)
-    blue = '0x' + hex.charAt(4) + hex.charAt(5)
+    hex.innerHTML = `HEX CODE: ${color}`
+    rgb.innerHTML = `RGB CODE: ${rgbColor}`
 
-    return `rgb(${red.toString(10)}, ${green.toString(10)}, ${blue.toString(10)})`
 }
 
-function changeBg(container, selector){
+function events(container, selector){
     
     // Change background by clicking button
-
     selector.addEventListener('click', (e) => {
-        container.style.background = generateHEXColor()
+        let color = generateHEXColor().toUpperCase()
+        container.style.background = color
+        printResult(color)
     })
 
     // Change background by entering space button
     window.addEventListener('keypress', (e) => {
         if(e.key === ' '){
-            container.style.background = generateHEXColor()
+            let color = generateHEXColor().toUpperCase()
+            container.style.background = color
+            printResult(color)
         }
     })
 
-}
-
-function printResult(hex, rgb){
-    let hexColor = generateHEXColor()
-    hex.innHTML = `HEX CODE: ${hexColor}`
-    let rgbColor = rgbToHex(hexColor)
-    rgb.innerHTML = `HEX CODE: ${rgbColor}`
 }
