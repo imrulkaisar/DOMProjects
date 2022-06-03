@@ -36,3 +36,12 @@ body {
     color: #ffffff;
     cursor: pointer;
 }
+
+.result {
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 30px;
+    margin-top: 50px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
