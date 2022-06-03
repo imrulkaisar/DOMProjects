@@ -22,6 +22,8 @@ function main(){
     // Step 3: Collect all necessary referances
     let main = document.getElementById('main')
     let changeBtn = document.getElementById('change-bg')
+    let hexColor = document.querySelector('.hex-code')
+    let rgbColor = document.querySelector('.rgb-code')
 
     changeBg(main, changeBtn)
 
@@ -57,15 +59,11 @@ function hextoRgb(hex){
 }
 
 function changeBg(container, selector){
-
-    let hexColor = document.querySelector('.hex-code')
-    let rgbColor = document.querySelector('.rgb-code')
     
     // Change background by clicking button
 
     selector.addEventListener('click', (e) => {
         container.style.background = generateHEXColor()
-        // printResult(hexColor, rgbColor)
     })
 
     // Change background by entering space button
@@ -73,7 +71,6 @@ function changeBg(container, selector){
         if(e.key === ' '){
             container.style.background = generateHEXColor()
         }
-        // printResult(hexColor, rgbColor)
     })
 
 }
