@@ -47,3 +47,13 @@ body {
     text-align: center;
     min-width: 300px;
 }
+
+.result .copy img {
+    width: 20px;
+    margin: 0 0 -3px 5px;
+}
+
+.result .copy img:hover{
+    cursor: pointer;
+    filter: grayscale(100%)
+}

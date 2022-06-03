@@ -3,7 +3,7 @@
  * 
  * Steps: 
  * 1) Create Oneload handeler
- * 2) RGB color generator function
+ * 2) HEX color generator function
  * 3) Collect all necessary referances 
  * 4) RGB to HEX converter function
  * 5) Handle the click event 
@@ -53,10 +53,34 @@ function printResult(color){
     let hex = document.querySelector('.hex-code')
     let rgb = document.querySelector('.rgb-code')
     let rgbColor = document.getElementById('main').style.backgroundColor
+    
+    hex.innerHTML = `HEX CODE: ${color} <span id="copy-hex" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
+    rgb.innerHTML = `RGB CODE: ${rgbColor} <span id="copy-rgb" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
 
-    hex.innerHTML = `HEX CODE: ${color}`
-    rgb.innerHTML = `RGB CODE: ${rgbColor}`
+    let copyHex = document.getElementById('copy-hex')
+    let copyRgb = document.getElementById('copy-rgb')
 
+    copyColor(copyHex, color)
+    copyColor(copyRgb, rgbColor)
+
+
+}
+
+function copyColor(selector, value){
+    selector.addEventListener('click', function(){
+        navigator.clipboard.writeText(value)
+        let result = document.querySelector('.result')
+        let createNotic = document.createElement('p')
+        createNotic.id = 'notice'
+        createNotic.innerText = 'Code Copied'
+        createNotic.style.color = '#ff0000'
+        result.style.borderColor = '#ff0000'
+        result.appendChild(createNotic)
+        setTimeout(function(){
+            result.removeChild(createNotic)
+            result.style.borderColor = '#ffffff'
+        }, 1000)
+    })
 }
 
 function events(container, selector){
@@ -78,3 +102,5 @@ function events(container, selector){
     })
 
 }
+
+
