@@ -21,6 +21,7 @@ body {
 #main-heading {
     font-size: 32px;
     text-shadow: 0 2px 0px #ffffff, 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 -02px 0px #ffffff;
+    text-align: center;
 }
 .button {
     padding: 15px 35px;
@@ -56,4 +57,16 @@ body {
 .result .copy img:hover{
     cursor: pointer;
     filter: grayscale(100%)
+}
+
+input#inpColor {
+    width: 250px;
+    padding: 10px 15px;
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    background: rgba(255,255,255, .7);
+    color: #000000;
 }

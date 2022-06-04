@@ -8,6 +8,7 @@
  * 4) RGB to HEX converter function
  * 5) Handle the click event 
  * 6) Show the result
+ * 7) Implement color input feature
 **/
 
 // Step 1: Create Oneload handeler
@@ -26,6 +27,8 @@ function main(){
     let rgbColor = document.querySelector('.rgb-code')
 
     events(main, changeBtn)
+
+    inputFunc()
 
 }
 
@@ -83,6 +86,13 @@ function copyColor(selector, value){
     })
 }
 
+// Color code validation function
+function validColor(color){
+    let len = color.length
+    let code = color.substring(1)
+    return (color[0] === '#' && len === 7 && /^[0-9A-Fa-f]{6}$/i.test(code)) ? true : false
+}
+
 function events(container, selector){
     
     // Change background by clicking button
@@ -101,6 +111,44 @@ function events(container, selector){
         }
     })
 
+    
+
 }
 
 
+// Change background by inputing color code
+function inputFunc(){
+
+    let main = document.getElementById('main')
+    let inpColor = document.getElementById('inpColor')
+    let inputArea = document.getElementById('input-area')
+
+    inputArea.addEventListener('click', function(e){
+        inpColor.removeAttribute('disabled')
+    })
+
+    inpColor.addEventListener('input', (e) => {codeChangeBg(e)})
+
+    function codeChangeBg(e){
+        let value = e.target.value
+        if(validColor(value)){
+            main.style.background = value
+            printResult(value)
+            inpColor.style.backgroundColor = '#ffffff'
+            inpColor.style.color = '#000000'
+
+            inputArea.addEventListener('click', function(e){
+                inpColor.value = ''
+            })
+        } else {
+            inpColor.style.backgroundColor = '#ff0000'
+            inpColor.style.color = '#ffffff'
+
+            inputArea.addEventListener('click', function(e){
+                inpColor.value = value
+            })
+        }
+    }
+
+
+}
