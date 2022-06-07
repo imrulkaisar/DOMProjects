@@ -14,7 +14,7 @@
 // Step 1: Create Oneload handeler
  
 window.onload = () => {
-
+    
     main()
 }
 
@@ -32,12 +32,9 @@ function main(){
 
 }
 
-
-// Step 2: RGB color generator function
-
-function generateHEXColor(){
-
-    let red, green, blue, color
+// Color Generator Function
+function colorGenerator(){
+    let red, green, blue
 
     red = Math.floor(Math.random() * 255 + 1)
 
@@ -45,20 +42,24 @@ function generateHEXColor(){
 
     blue = Math.floor(Math.random() * 255 + 1)
 
-    color = '#' + red.toString(16) + green.toString(16) + blue.toString(16)
+    function makeTwoChar(value){
+        let char = value.toString(16)
+        return char.length === 1 ? `0${char}`:char
+    }
 
-    return color
-
+    return {
+        rgb: `rgb(${red}, ${green}, ${blue})`,
+        hex: `#${makeTwoChar(red)}${makeTwoChar(green)}${makeTwoChar(blue)}`.toUpperCase()
+    }
 }
 
 function printResult(color){
     
     let hex = document.querySelector('.hex-code')
     let rgb = document.querySelector('.rgb-code')
-    let rgbColor = document.getElementById('main').style.backgroundColor
     
-    hex.innerHTML = `HEX CODE: ${color} <span id="copy-hex" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
-    rgb.innerHTML = `RGB CODE: ${rgbColor} <span id="copy-rgb" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
+    hex.innerHTML = `HEX CODE: ${color.hex} <span id="copy-hex" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
+    rgb.innerHTML = `RGB CODE: ${color.rgb} <span id="copy-rgb" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
 
     let copyHex = document.getElementById('copy-hex')
     let copyRgb = document.getElementById('copy-rgb')
@@ -97,20 +98,21 @@ function events(container, selector){
     
     // Change background by clicking button
     selector.addEventListener('click', (e) => {
-        let color = generateHEXColor().toUpperCase()
-        container.style.background = color
-        printResult(color)
+        changeBg(e)
     })
 
     // Change background by entering space button
     window.addEventListener('keypress', (e) => {
         if(e.key === ' '){
-            let color = generateHEXColor().toUpperCase()
-            container.style.background = color
-            printResult(color)
+            changeBg(e)
         }
     })
-
+    
+    function changeBg(e){
+        let color = colorGenerator()
+        container.style.background = color.rgb
+        printResult(color)
+    }
     
 
 }
