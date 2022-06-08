@@ -80,14 +80,11 @@ function copyColor(selector, value){
     selector.addEventListener('click', function(){
         navigator.clipboard.writeText(value)
         let result = document.querySelector('.result')
-        let createNotic = document.createElement('p')
-        createNotic.id = 'notice'
-        createNotic.innerText = 'Code Copied'
-        createNotic.style.color = '#ff0000'
+        let notic = document.getElementById('copied')
+        notic.innerText = 'Code Copied'
         result.style.borderColor = '#ff0000'
-        result.appendChild(createNotic)
         setTimeout(function(){
-            result.removeChild(createNotic)
+            notic.innerText = ''
             result.style.borderColor = '#ffffff'
         }, 1000)
     })
