@@ -16,6 +16,7 @@
 window.onload = () => {
     
     main()
+    defaultAction()
 }
 
 function main(){
@@ -30,6 +31,14 @@ function main(){
 
     inputFunc()
 
+}
+
+function defaultAction(){
+
+    let main = document.getElementById('main')
+    let color = colorGenerator()
+    printResult(color)
+    main.style.backgroundColor = color.rgb
 }
 
 // Color Generator Function
@@ -61,11 +70,8 @@ function printResult(color){
     hex.innerHTML = `HEX CODE: ${color.hex} <span id="copy-hex" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
     rgb.innerHTML = `RGB CODE: ${color.rgb} <span id="copy-rgb" class="copy"><img src="./src/copy.png" alt="copy" srcset=""></span>`
 
-    let copyHex = document.getElementById('copy-hex')
-    let copyRgb = document.getElementById('copy-rgb')
-
-    copyColor(copyHex, color)
-    copyColor(copyRgb, rgbColor)
+    copyColor(hex, color.hex) 
+    copyColor(rgb, color.rgb)
 
 
 }
@@ -94,6 +100,14 @@ function validColor(color){
     return (color[0] === '#' && len === 7 && /^[0-9A-Fa-f]{6}$/i.test(code)) ? true : false
 }
 
+function inputColors(bg, text){
+    let inpColor = document.getElementById('inpColor')
+    let inputArea = document.getElementById('input-area')
+    
+    inpColor.style.backgroundColor = bg
+    inpColor.style.color = text
+}
+
 function events(container, selector){
     
     // Change background by clicking button
@@ -109,9 +123,12 @@ function events(container, selector){
     })
     
     function changeBg(e){
+
         let color = colorGenerator()
         container.style.background = color.rgb
         printResult(color)
+
+        inputColors('#ffffff', '#000000')
     }
     
 
@@ -127,28 +144,28 @@ function inputFunc(){
 
     inputArea.addEventListener('click', function(e){
         inpColor.removeAttribute('disabled')
+        inpColor.style.textTransform = 'uppercase'
     })
 
     inpColor.addEventListener('input', (e) => {codeChangeBg(e)})
 
     function codeChangeBg(e){
         let value = e.target.value
-        if(validColor(value)){
-            main.style.background = value
-            printResult(value)
-            inpColor.style.backgroundColor = '#ffffff'
-            inpColor.style.color = '#000000'
+        let notice = document.getElementById('wrong-hex') 
+        notice.innerText = ''
 
-            inputArea.addEventListener('click', function(e){
-                inpColor.value = ''
-            })
+        inputColors('#ffffff', '#000000')
+        
+        if(!validColor(value)){
+            notice.innerText = 'HEX code is not valid'
+            inputColors('#ff0000','#ffffff')
         } else {
-            inpColor.style.backgroundColor = '#ff0000'
-            inpColor.style.color = '#ffffff'
-
-            inputArea.addEventListener('click', function(e){
-                inpColor.value = value
-            })
+            main.style.background = value
+            let valueObj = {
+                hex: value.toUpperCase(),
+                rgb: main.style.background
+            }
+            printResult(valueObj)
         }
     }
 
