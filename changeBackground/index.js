@@ -39,6 +39,7 @@ function defaultAction(){
     let color = colorGenerator()
     printResult(color)
     main.style.backgroundColor = color.rgb
+    
 }
 
 // Color Generator Function
