@@ -121,12 +121,9 @@ function events(container, selector){
     })
     
     function changeBg(e){
-
         let color = colorGenerator()
         container.style.background = color.rgb
         printResult(color)
-
-        inputColors('#ffffff', '#000000')
     }
     
 
@@ -157,6 +154,10 @@ function inputFunc(){
         if(!validColor(value)){
             notice.innerText = 'HEX code is not valid'
             inputColors('#ff0000','#ffffff')
+            if(value === ''){
+                notice.innerText = ''
+                inputColors('#ffffff', '#000000')
+            }
         } else {
             main.style.background = value
             let valueObj = {
