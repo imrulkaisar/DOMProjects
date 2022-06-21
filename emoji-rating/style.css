@@ -1,0 +1,51 @@
+ body{
+    margin: 0;
+    background-image: linear-gradient(#1ABC9C, #3498DB);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .main-container {
+    background: #ffffff;
+    min-width: 400px;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .21);
+ }
+ #emoji-container {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    /* border-radius: 50%; */
+ }
+#emojis {
+    position: absolute;
+    transform: translateY(0px);
+    color: #E74C3C;
+    transition: transform .1s;
+ }
+#emojis .fa-solid {
+    padding: 2px 0;
+ }
+ .main-container .comment {
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: capitalize;
+ }
+
+ .ratings .fa-star {
+    color: #cdcdcd;
+    cursor: pointer;
+ }
+ .ratings .fa-star.active {
+    color: #eeca00;
+ }
