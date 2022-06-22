@@ -9,14 +9,28 @@ body {
     align-items: center;
 }
 
+.gallery-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .image-gallery {
     position: relative;
     width: 250px;
     height: 350px;
+    transform: perspective(1000px) rotateY(0deg);
     transform-style: preserve-3d;
-    -webkit-animation: rotation 30s linear infinite;
-    animation: rotation 30s linear infinite;
+    /* animation: rotation 30s linear infinite; */
     position: relative;
+    animation-play-state: running;
+    transition: 0.5s;
+    transition-timing-function: linear;
+}
+.image-gallery:hover {
+    animation-play-state: paused;
 }
 
 
@@ -60,4 +74,34 @@ body {
     display: block;
     color: #ffffff;
     font-size: 24px;
+}
+
+.controls {
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    max-width: 1140px;
+    display:
+    flex;
+    justify-content: space-between;
+}
+
+.controls > div span {
+    border: 2px solid #ffffff;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+    font-weight: 900;
+    padding-top: 4px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+.controls > div span:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000000;
 }
