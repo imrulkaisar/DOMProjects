@@ -65,8 +65,14 @@ function makeTwoDigit(num){
 }
 
 function setTimeTwoDaysAhead(){
-    const d = new Date()
-    const getDate = d.getTime() + 2 * 24 * 3600 * 1000
+    let d = new Date()
+    d.setDate(d.getDate() + 5)
+    d.setHours(0)
+    d.setMinutes(0)
+    d.setSeconds(0)
+    const getDate = d.getTime()
+
+    console.log(d)
 
     return new Date(getDate)
 }
