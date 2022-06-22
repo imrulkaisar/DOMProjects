@@ -24,7 +24,6 @@ window.onload = () => {
     function rotateGallery(num){
         let deg = Math.sign(num) === 1 ? currDeg +=  Math.abs(num) : currDeg -=  Math.abs(num)
         imageGallery.style.transform = `perspective(1000px) rotateY(${deg}deg)`
-        console.log(deg)
         timeInterval = setTimeout(function(){
             rotateGallery(-51.5)
         }, 3000)

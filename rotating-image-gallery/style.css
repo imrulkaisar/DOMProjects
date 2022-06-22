@@ -23,25 +23,15 @@ body {
     height: 350px;
     transform: perspective(1000px) rotateY(0deg);
     transform-style: preserve-3d;
-    /* animation: rotation 30s linear infinite; */
     position: relative;
-    animation-play-state: running;
+    /* animation-play-state: running; */
     transition: 0.5s;
     transition-timing-function: linear;
 }
-.image-gallery:hover {
+/* .image-gallery:hover {
     animation-play-state: paused;
-}
+} */
 
-
-@keyframes rotation {
-    0% {
-        transform: perspective(1000px) rotateY(0deg);
-    }
-    100% {
-        transform: perspective(1000px) rotateY(360deg);
-    }
-}
 
 .image-gallery span {
     position: absolute;
