@@ -12,24 +12,26 @@ const nextBtn = document.getElementById('next')
 window.onload = () => {
     
     let currDeg = 0
+    let rotateIntervalDeg = 360/7
+    
     prevBtn.addEventListener('click', function(e){
         clearTimeout(timeInterval)
-        rotateGallery(51.5)
+        rotateGallery(rotateIntervalDeg)
     })
     nextBtn.addEventListener('click', function(){
         clearTimeout(timeInterval)
-        rotateGallery(-51.5)
+        rotateGallery(-rotateIntervalDeg)
     })
 
     function rotateGallery(num){
         let deg = Math.sign(num) === 1 ? currDeg +=  Math.abs(num) : currDeg -=  Math.abs(num)
         imageGallery.style.transform = `perspective(1000px) rotateY(${deg}deg)`
         timeInterval = setTimeout(function(){
-            rotateGallery(-51.5)
+            rotateGallery(-rotateIntervalDeg)
         }, 3000)
         
     }
 
-    rotateGallery(-51.5)
+    rotateGallery(-rotateIntervalDeg)
     
 }
